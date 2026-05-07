@@ -1,15 +1,20 @@
 # nikahh
 
-Статический лендинг-приглашение на никах, готовый для GitHub Pages.
+Next.js-проект лендинга-приглашения на никах.
 
-После публикации сайт можно открыть по адресу:
+## Запуск локально
 
-- `https://massmann1.github.io/nikahh/`
+```bash
+npm install
+npm run dev
+```
 
-Если Pages ещё не включён, в репозитории нужно выбрать:
+Открыть:
 
-- `Settings`
-- `Pages`
-- `Deploy from a branch`
-- Branch: `main`
-- Folder: `/ (root)`
+- `http://localhost:3000`
+
+## Содержимое
+
+- `app/` — страница и глобальные стили
+- `components/nikah-countdown.tsx` — таймер
+- `public/nikah/` — фотографии для лендинга
