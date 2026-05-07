@@ -118,6 +118,7 @@ export default function HomePage() {
             <BotanicalCorners />
 
             <div className="v2-hero-copy">
+              <p className="v2-hero-seal">05 · 06 · 2026</p>
               <p className="v2-hero-place">Казань · Мечеть Алтан</p>
               <h1 className="v2-hero-names">
                 <span>Ильнур</span>
@@ -130,19 +131,24 @@ export default function HomePage() {
             </div>
 
             <div className="v2-date-block fade-rise delay-3">
-              <p className="v2-date-main">05 июня 2026</p>
-              <p className="v2-date-note">Пятница</p>
+              <div className="v2-date-plaque">
+                <p className="v2-date-main">05 июня 2026</p>
+                <p className="v2-date-note">Пятница · начало в 15:30</p>
+              </div>
             </div>
 
-            <div className="v2-hero-photo photo-float fade-rise delay-4">
-              <Image
-                src="/nikah/start.jpg"
-                alt="Начало приглашения на никах"
-                fill
-                priority
-                sizes="(max-width: 640px) 100vw, 464px"
-                className="object-cover"
-              />
+            <div className="v2-hero-photo-wrap fade-rise delay-4">
+              <div className="v2-photo-chip">05 / 06</div>
+              <div className="v2-hero-photo photo-float">
+                <Image
+                  src="/nikah/start.jpg"
+                  alt="Начало приглашения на никах"
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 100vw, 464px"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
 
@@ -151,6 +157,7 @@ export default function HomePage() {
             <div className="v2-countdown-head">
               <p className="v2-card-label">До начала</p>
               <h2>Осталось</h2>
+              <p className="v2-countdown-subtitle">Скоро увидимся на нашем светлом празднике</p>
             </div>
             <NikahCountdown />
           </div>
@@ -181,6 +188,9 @@ export default function HomePage() {
             <div className="v2-program-list">
               {schedule.map(({ time, title, note, address }) => (
                 <article key={time} className="v2-program-item">
+                  <div className="v2-program-line" aria-hidden="true">
+                    <span className="v2-program-dot" />
+                  </div>
                   <div className="v2-program-time">{time}</div>
                   <div className="v2-program-copy">
                     <h3>{title}</h3>
@@ -198,7 +208,7 @@ export default function HomePage() {
             <SectionKicker icon={MapPin}>Локации</SectionKicker>
             <h2 className="v2-section-title">Где пройдёт наш день</h2>
             <div className="v2-location-list">
-              {locations.map(({ title, subtitle, address, href, imageSrc, imageAlt }) => (
+              {locations.map(({ title, subtitle, address, href, imageSrc, imageAlt }, index) => (
                 <article key={title} className="v2-location-card">
                   <div className="v2-location-photo photo-float">
                     <Image
@@ -208,10 +218,16 @@ export default function HomePage() {
                       sizes="(max-width: 640px) 100vw, 464px"
                       className="object-cover"
                     />
-                    <div className="v2-location-badge">{subtitle}</div>
+                    <div className="v2-location-overlay" aria-hidden="true" />
+                    <div className="v2-location-caption">
+                      <span className="v2-location-serial">0{index + 1}</span>
+                      <div>
+                        <p className="v2-location-badge">{subtitle}</p>
+                        <h3>{title}</h3>
+                      </div>
+                    </div>
                   </div>
                   <div className="v2-location-copy">
-                    <h3>{title}</h3>
                     <p>{address}</p>
                     <a href={href} target="_blank" rel="noreferrer" className="v2-link">
                       <span>Открыть маршрут</span>
@@ -228,6 +244,10 @@ export default function HomePage() {
           <div className="v2-section fade-rise delay-6">
             <SectionKicker icon={Sparkles}>Дресс-код</SectionKicker>
             <h2 className="v2-section-title">Просим поддержать стиль дня</h2>
+            <div className="v2-dress-note">
+              Выбирайте спокойные природные оттенки и закрытые силуэты, уместные для мечети и семейного
+              торжества.
+            </div>
             <div className="v2-detail-list">
               {dressCodeItems.map(({ title, text, icon: Icon }) => (
                 <article key={title} className="v2-detail-item">
@@ -242,6 +262,7 @@ export default function HomePage() {
               ))}
             </div>
 
+            <p className="v2-palette-caption">Рекомендуемая палитра</p>
             <div className="v2-palette">
               {dressPalette.map((color, index) => (
                 <div
