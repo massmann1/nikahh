@@ -6,6 +6,7 @@
   color-scheme: light;
   --font-body: "Avenir Next", "Nunito Sans", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: "Baskerville", "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+  --font-hero-names: "Palatino Linotype", "Book Antiqua", "Iowan Old Style", "Georgia", serif;
 }
 
 * {
@@ -233,27 +234,42 @@ select {
 }
 
 .olive-hero-names {
+  position: relative;
   margin: 1.05rem 0 0;
   font-size: clamp(2.45rem, 12vw, 3.55rem);
-  line-height: 0.9;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #304038;
+  line-height: 0.94;
+  letter-spacing: 0.015em;
+  text-transform: none;
+  color: #2d3d35;
+  font-family: var(--font-hero-names), var(--font-heading), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  text-wrap: balance;
 }
 
 .olive-hero-names span {
   display: block;
 }
 
+.olive-hero-names::after {
+  content: "";
+  display: block;
+  width: 6rem;
+  height: 1px;
+  margin: 1rem auto 0;
+  background: linear-gradient(to right, transparent, rgb(163 149 125 / 0.85), transparent);
+}
+
 .olive-hero-ampersand {
-  padding: 0.16rem 0;
-  font-size: 0.68em;
-  color: #a58f72;
+  padding: 0.24rem 0 0.18rem;
+  font-size: 0.58em;
+  color: #9f8a6d;
+  letter-spacing: 0.08em;
 }
 
 .olive-hero-text {
   width: min(100%, 19rem);
-  margin: 1.2rem auto 0;
+  margin: 1.15rem auto 0;
   font-size: 0.95rem;
   line-height: 1.78;
   color: #5a685f;
