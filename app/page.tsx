@@ -1,24 +1,40 @@
+import type { ReactNode } from 'react';
+import type { LucideIcon } from 'lucide-react';
 import Image from 'next/image';
-import { ArrowUpRight, Leaf, MapPin, MoonStar, Shirt, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Clock3, HeartHandshake, Leaf, MapPin, MoonStar, Shirt, Sparkles } from 'lucide-react';
 import { NikahCountdown } from '@/components/nikah-countdown';
 
-const schedule = [
+const schedule: Array<{
+  time: string;
+  title: string;
+  note: string;
+  address: string;
+}> = [
   {
     time: '15:30',
-    title: 'Никах',
-    note: 'Мечеть Алтан'
+    title: 'Никах в мечети Алтан',
+    note: 'Просим приехать немного заранее, чтобы спокойно занять места к началу церемонии.',
+    address: 'ул. Дубравная, 2В, Казань'
   },
   {
     time: '17:30',
-    title: 'Банкет',
-    note: 'Кафе «Эмиз»'
+    title: 'Банкет в кафе «Эмиз»',
+    note: 'После никаха продолжим вечер за праздничным столом, в тёплой и семейной атмосфере.',
+    address: 'улица Сафиуллина, 29, Казань'
   }
 ];
 
-const venueItems = [
+const locations: Array<{
+  title: string;
+  subtitle: string;
+  address: string;
+  href: string;
+  imageSrc: string;
+  imageAlt: string;
+}> = [
   {
     title: 'Мечеть Алтан',
-    label: 'Никах',
+    subtitle: 'Церемония никаха',
     address: 'ул. Дубравная, 2В, Казань',
     href: 'https://yandex.ru/maps/?text=%D0%BC%D0%B5%D1%87%D0%B5%D1%82%D1%8C%20%D0%90%D0%BB%D1%82%D0%B0%D0%BD%2C%20%D1%83%D0%BB.%20%D0%94%D1%83%D0%B1%D1%80%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F%2C%202%D0%92%2C%20%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD%D1%8C',
     imageSrc: '/nikah/altan.png',
@@ -26,7 +42,7 @@ const venueItems = [
   },
   {
     title: 'Кафе «Эмиз»',
-    label: 'Банкет',
+    subtitle: 'Праздничный банкет',
     address: 'улица Сафиуллина, 29, Казань',
     href: 'https://yandex.ru/maps/?text=%D0%BA%D0%B0%D1%84%D0%B5%20%D0%AD%D0%BC%D0%B8%D0%B7%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A1%D0%B0%D1%84%D0%B8%D1%83%D0%BB%D0%BB%D0%B8%D0%BD%D0%B0%2C%2029%2C%20%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD%D1%8C',
     imageSrc: '/nikah/emiz.png',
@@ -34,175 +50,220 @@ const venueItems = [
   }
 ];
 
-const dressCodePalette = [
-  { name: 'Кремовый', hex: '#eff0df' },
-  { name: 'Тёплый бежевый', hex: '#dbd8c6' },
-  { name: 'Серый тауп', hex: '#b8b2a5' },
-  { name: 'Оливковый', hex: '#76805b' },
-  { name: 'Глубокий хаки', hex: '#4a513b' }
+const dressCodeItems: Array<{ title: string; text: string; icon: LucideIcon }> = [
+  {
+    title: 'Закрытая одежда',
+    text: 'Будем признательны за спокойный и сдержанный образ, подходящий для мечети и семейного праздника.',
+    icon: Shirt
+  },
+  {
+    title: 'Тюбетейка и платок',
+    text: 'Для мужчин обязательна тюбетейка, для женщин платок. Это важная часть атмосферы и уважения к традиции.',
+    icon: MoonStar
+  }
 ];
 
-function BotanicalSprigs() {
+const dressPalette = ['#edf0e4', '#d7d9c9', '#b8baa8', '#7d8661', '#4d5540'];
+
+function BotanicalCorners() {
   return (
     <>
-      <div className="sprig sprig-top-left" aria-hidden="true">
-        <Leaf className="sprig-leaf sprig-leaf-lg" />
-        <Leaf className="sprig-leaf sprig-leaf-md" />
-        <Leaf className="sprig-leaf sprig-leaf-sm" />
+      <div className="botanical botanical-top" aria-hidden="true">
+        <Leaf className="botanical-leaf botanical-leaf-lg" />
+        <Leaf className="botanical-leaf botanical-leaf-md" />
+        <Leaf className="botanical-leaf botanical-leaf-sm" />
       </div>
-      <div className="sprig sprig-bottom-right" aria-hidden="true">
-        <Leaf className="sprig-leaf sprig-leaf-lg" />
-        <Leaf className="sprig-leaf sprig-leaf-md" />
-        <Leaf className="sprig-leaf sprig-leaf-sm" />
+      <div className="botanical botanical-bottom" aria-hidden="true">
+        <Leaf className="botanical-leaf botanical-leaf-lg" />
+        <Leaf className="botanical-leaf botanical-leaf-md" />
+        <Leaf className="botanical-leaf botanical-leaf-sm" />
       </div>
     </>
   );
 }
 
+function SectionKicker({ icon: Icon, children }: { icon: LucideIcon; children: ReactNode }) {
+  return (
+    <div className="v2-kicker">
+      <Icon className="h-4 w-4" />
+      <span>{children}</span>
+    </div>
+  );
+}
+
+function Divider() {
+  return (
+    <div className="v2-divider" aria-hidden="true">
+      <div className="v2-divider-line" />
+      <div className="v2-divider-dot" />
+      <div className="v2-divider-line" />
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
-    <main className="version-two-shell">
-      <div className="version-two-glow version-two-glow-left" />
-      <div className="version-two-glow version-two-glow-right" />
+    <main className="v2-shell">
+      <div className="v2-glow v2-glow-left" />
+      <div className="v2-glow v2-glow-right" />
 
-      <section className="version-two-board fade-rise">
-        <header className="version-two-header fade-rise delay-1">
-          <p className="version-two-caption">Версия 2</p>
-          <h1>Сайт-приглашение на никах</h1>
-        </header>
+      <div className="v2-stage">
+        <section className="v2-sheet fade-rise">
+          <div className="v2-sheet-topline fade-rise delay-1">
+            <span>Никах</span>
+            <span>Казань</span>
+          </div>
 
-        <div className="version-two-grid">
-          <div className="version-two-column">
-            <article className="v2-card v2-card-light v2-hero-card fade-rise delay-2">
-              <BotanicalSprigs />
+          <div className="v2-hero-card fade-rise delay-2">
+            <BotanicalCorners />
 
-              <div className="v2-hero-copy">
-                <p className="v2-hero-date">05.06.2026</p>
-                <h2 className="v2-hero-names">
-                  <span>Ильнур</span>
-                  <span className="v2-ampersand">&amp;</span>
-                  <span>Камилла</span>
-                </h2>
-                <p className="v2-hero-text">
-                  Дорогие родные и друзья, будем счастливы разделить с вами день нашего никаха.
-                </p>
-              </div>
+            <div className="v2-hero-copy">
+              <p className="v2-hero-place">Казань · Мечеть Алтан</p>
+              <h1 className="v2-hero-names">
+                <span>Ильнур</span>
+                <span className="v2-hero-ampersand">&amp;</span>
+                <span>Камилла</span>
+              </h1>
+              <p className="v2-hero-text">
+                С благословением Всевышнего приглашаем вас разделить с нами светлый день нашего никаха.
+              </p>
+            </div>
 
-              <div className="v2-hero-photo photo-float">
-                <Image
-                  src="/nikah/start.jpg"
-                  alt="Начало приглашения на никах"
-                  fill
-                  priority
-                  sizes="(max-width: 640px) 50vw, 280px"
-                  className="object-cover"
-                />
-              </div>
-            </article>
+            <div className="v2-date-block fade-rise delay-3">
+              <p className="v2-date-main">05 июня 2026</p>
+              <p className="v2-date-note">Пятница</p>
+            </div>
 
-            <article className="v2-card v2-card-light v2-venue-card fade-rise delay-4">
-              <div className="v2-card-heading">
-                <p className="v2-section-label">Локации</p>
-                <h2>Место торжества</h2>
-              </div>
+            <div className="v2-hero-photo photo-float fade-rise delay-4">
+              <Image
+                src="/nikah/start.jpg"
+                alt="Начало приглашения на никах"
+                fill
+                priority
+                sizes="(max-width: 640px) 100vw, 464px"
+                className="object-cover"
+              />
+            </div>
+          </div>
 
-              <div className="v2-venue-photos">
-                {venueItems.map((item) => (
-                  <div key={item.title} className="v2-venue-photo photo-float">
+          <div className="v2-countdown-card fade-rise delay-5">
+            <BotanicalCorners />
+            <div className="v2-countdown-head">
+              <p className="v2-card-label">До начала</p>
+              <h2>Осталось</h2>
+            </div>
+            <NikahCountdown />
+          </div>
+
+          <div className="v2-hero-footnote fade-rise delay-6">
+            <p>
+              Нам будет очень радостно видеть вас рядом в этот особенный день, наполненный молитвой,
+              теплом семьи и красивыми воспоминаниями.
+            </p>
+          </div>
+        </section>
+
+        <section className="v2-sheet fade-rise delay-2">
+          <div className="v2-section fade-rise delay-3">
+            <SectionKicker icon={HeartHandshake}>Для вас</SectionKicker>
+            <h2 className="v2-section-title">Дорогие гости</h2>
+            <p className="v2-section-text">
+              Спасибо, что разделяете с нами этот важный этап жизни. Очень хотим провести его рядом с
+              близкими людьми, в спокойной, тёплой и уважительной атмосфере.
+            </p>
+          </div>
+
+          <Divider />
+
+          <div id="timing" className="v2-section fade-rise delay-4">
+            <SectionKicker icon={Clock3}>Тайминг</SectionKicker>
+            <h2 className="v2-section-title">План дня</h2>
+            <div className="v2-program-list">
+              {schedule.map(({ time, title, note, address }) => (
+                <article key={time} className="v2-program-item">
+                  <div className="v2-program-time">{time}</div>
+                  <div className="v2-program-copy">
+                    <h3>{title}</h3>
+                    <p>{note}</p>
+                    <p className="v2-program-address">{address}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <Divider />
+
+          <div id="locations" className="v2-section fade-rise delay-5">
+            <SectionKicker icon={MapPin}>Локации</SectionKicker>
+            <h2 className="v2-section-title">Где пройдёт наш день</h2>
+            <div className="v2-location-list">
+              {locations.map(({ title, subtitle, address, href, imageSrc, imageAlt }) => (
+                <article key={title} className="v2-location-card">
+                  <div className="v2-location-photo photo-float">
                     <Image
-                      src={item.imageSrc}
-                      alt={item.imageAlt}
+                      src={imageSrc}
+                      alt={imageAlt}
                       fill
-                      sizes="(max-width: 640px) 24vw, 150px"
+                      sizes="(max-width: 640px) 100vw, 464px"
                       className="object-cover"
                     />
-                    <div className="v2-venue-badge">{item.label}</div>
+                    <div className="v2-location-badge">{subtitle}</div>
                   </div>
-                ))}
-              </div>
-
-              <div className="v2-venue-list">
-                {venueItems.map((item) => (
-                  <article key={item.title} className="v2-venue-item">
-                    <p className="v2-venue-name">{item.title}</p>
-                    <p>{item.address}</p>
-                    <a href={item.href} target="_blank" rel="noreferrer" className="v2-text-link">
+                  <div className="v2-location-copy">
+                    <h3>{title}</h3>
+                    <p>{address}</p>
+                    <a href={href} target="_blank" rel="noreferrer" className="v2-link">
                       <span>Открыть маршрут</span>
                       <ArrowUpRight className="h-4 w-4" />
                     </a>
-                  </article>
-                ))}
-              </div>
-            </article>
-          </div>
-
-          <div className="version-two-column">
-            <article className="v2-card v2-card-olive v2-program-card fade-rise delay-3">
-              <div className="v2-card-heading v2-card-heading-light">
-                <p className="v2-section-label">05.06.2026</p>
-                <h2>Программа торжества</h2>
-              </div>
-
-              <div className="v2-program-list">
-                {schedule.map((item) => (
-                  <div key={item.time} className="v2-program-row">
-                    <p className="v2-program-time">{item.time}</p>
-                    <div>
-                      <p className="v2-program-title">{item.title}</p>
-                      <p className="v2-program-note">{item.note}</p>
-                    </div>
                   </div>
-                ))}
-              </div>
-            </article>
-
-            <article className="v2-card v2-card-cream v2-countdown-card fade-rise delay-5">
-              <BotanicalSprigs />
-              <div className="v2-card-heading">
-                <p className="v2-section-label">До начала</p>
-                <h2>Осталось</h2>
-              </div>
-              <NikahCountdown />
-            </article>
-
-            <article className="v2-card v2-card-light v2-dress-card fade-rise delay-6">
-              <div className="v2-card-heading">
-                <p className="v2-section-label">Дресс-код</p>
-                <h2>Просим поддержать стиль дня</h2>
-              </div>
-
-              <div className="v2-detail-line">
-                <Shirt className="h-4 w-4" />
-                <p>Закрытая одежда, спокойные благородные оттенки.</p>
-              </div>
-              <div className="v2-detail-line">
-                <MoonStar className="h-4 w-4" />
-                <p>Обязательно тюбетейка для мужчин и платок для женщин.</p>
-              </div>
-              <div className="v2-detail-line">
-                <MapPin className="h-4 w-4" />
-                <p>Формат дня уважительный и семейный, в атмосфере никаха.</p>
-              </div>
-
-              <div className="v2-palette">
-                {dressCodePalette.map((item, index) => (
-                  <div
-                    key={item.name}
-                    className="v2-swatch scale-in"
-                    style={{ backgroundColor: item.hex, animationDelay: `${0.7 + index * 0.08}s` }}
-                    title={item.name}
-                  />
-                ))}
-              </div>
-
-              <div className="v2-closing">
-                <Sparkles className="h-4 w-4" />
-                <p>Будем счастливы разделить с вами этот красивый день.</p>
-              </div>
-            </article>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+
+          <Divider />
+
+          <div className="v2-section fade-rise delay-6">
+            <SectionKicker icon={Sparkles}>Дресс-код</SectionKicker>
+            <h2 className="v2-section-title">Просим поддержать стиль дня</h2>
+            <div className="v2-detail-list">
+              {dressCodeItems.map(({ title, text, icon: Icon }) => (
+                <article key={title} className="v2-detail-item">
+                  <div className="v2-detail-icon">
+                    <Icon className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="v2-palette">
+              {dressPalette.map((color, index) => (
+                <div
+                  key={color}
+                  className="v2-palette-swatch scale-in"
+                  style={{ backgroundColor: color, animationDelay: `${0.75 + index * 0.08}s` }}
+                />
+              ))}
+            </div>
+          </div>
+
+          <Divider />
+
+          <div className="v2-section v2-section-center fade-rise delay-6">
+            <SectionKicker icon={HeartHandshake}>С любовью</SectionKicker>
+            <p className="v2-section-text v2-section-text-center">
+              Будем ждать вас 05 июня 2026 года и будем счастливы разделить с вами красоту этого дня.
+            </p>
+            <p className="v2-signoff">Ильнур и Камилла</p>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
