@@ -97,6 +97,7 @@ export default function HomePage() {
             </header>
 
             <div className="olive-hero">
+              <p className="olive-hero-mark">05 · 06 · 2026</p>
               <p className="olive-hero-place">Казань · Мечеть Алтан</p>
               <h1 className="olive-hero-names">
                 <span>Ильнур</span>
