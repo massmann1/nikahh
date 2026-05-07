@@ -61,6 +61,7 @@ select {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
+  isolation: isolate;
   padding: max(1rem, env(safe-area-inset-top)) 0.95rem calc(4rem + env(safe-area-inset-bottom));
 }
 
@@ -68,14 +69,29 @@ select {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
   pointer-events: none;
   background:
     linear-gradient(90deg, rgb(255 255 255 / 0.03), transparent 18%, transparent 82%, rgb(255 255 255 / 0.03)),
     radial-gradient(circle at 50% 8%, rgb(255 255 255 / 0.06), transparent 34%);
 }
 
+.olive-scene::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgb(95 106 78 / 0.1), rgb(82 96 69 / 0.16)),
+    url("/nikah/floral-frame.jpg") center top / cover no-repeat;
+  opacity: 0.42;
+  filter: saturate(0.86);
+}
+
 .olive-scene-glow {
   position: absolute;
+  z-index: 0;
   border-radius: 999px;
   filter: blur(72px);
   pointer-events: none;
