@@ -67,10 +67,10 @@ export function NikahCountdown() {
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-2 text-center sm:gap-3">
+    <div className="countdown-rack grid grid-cols-4 gap-2 text-center">
       {countdownItems.map(({ label, value }) => (
-        <div key={label} className="rounded-[22px] bg-white/60 px-2 py-3">
-          <div className="font-heading text-[1.8rem] leading-none text-[#2a443d]" suppressHydrationWarning>
+        <div key={label} className="countdown-card rounded-[22px] bg-white/60 px-2 py-3">
+          <div className="countdown-value font-heading text-[1.8rem] leading-none text-[#2a443d]" suppressHydrationWarning>
             {formatValue(value)}
           </div>
           <div className="mt-2 text-[10px] uppercase tracking-[0.22em] text-[#8c6a49]">{label}</div>
