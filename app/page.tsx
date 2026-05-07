@@ -63,8 +63,6 @@ const dressCodeItems: Array<{ title: string; text: string; icon: LucideIcon }> =
   }
 ];
 
-const dressPalette = ['#f2ede1', '#ddd5c4', '#b4b39f', '#76805f', '#4a533e'];
-
 function SectionKicker({ icon: Icon, children }: { icon: LucideIcon; children: ReactNode }) {
   return (
     <div className="olive-kicker">
@@ -231,16 +229,6 @@ export default function HomePage() {
                       <p>{text}</p>
                     </div>
                   </article>
-                ))}
-              </div>
-
-              <div className="olive-palette">
-                {dressPalette.map((color, index) => (
-                  <div
-                    key={color}
-                    className="olive-palette-swatch scale-in"
-                    style={{ backgroundColor: color, animationDelay: `${0.2 + index * 0.08}s` }}
-                  />
                 ))}
               </div>
             </section>
