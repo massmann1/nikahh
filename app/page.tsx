@@ -91,20 +91,20 @@ export default function HomePage() {
       <div className="olive-wrap">
         <section className="olive-paper fade-up">
           <div className="olive-paper-inner">
-            <header className="olive-topline">
+            <header className="olive-topline rise-in delay-1">
               <span>Никах</span>
               <span>Казань</span>
             </header>
 
             <div className="olive-hero">
               <p className="olive-hero-mark">05 · 06 · 2026</p>
-              <p className="olive-hero-place">Казань · Мечеть Алтан</p>
-              <h1 className="olive-hero-names">
+              <p className="olive-hero-place rise-in delay-3">Казань · Мечеть Алтан</p>
+              <h1 className="olive-hero-names rise-in delay-4">
                 <span>Ильнур</span>
                 <span className="olive-hero-ampersand">&amp;</span>
                 <span>Камилла</span>
               </h1>
-              <p className="olive-hero-text">
+              <p className="olive-hero-text rise-in delay-5">
                 С благословением Всевышнего приглашаем вас разделить с нами светлый день нашего никаха.
               </p>
 
@@ -113,7 +113,7 @@ export default function HomePage() {
                 <p className="olive-date-note">Пятница · начало в 15:30</p>
               </div>
 
-              <div className="olive-hero-photo image-drift">
+              <div className="olive-hero-photo image-drift rise-in delay-7">
                 <Image
                   src="/nikah/start.jpg"
                   alt="Начало приглашения на никах"
@@ -125,7 +125,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="olive-countdown-band">
+            <div className="olive-countdown-band rise-in delay-8">
               <div className="olive-countdown-copy">
                 <p className="olive-countdown-label">До начала</p>
                 <h2>Осталось</h2>
@@ -133,16 +133,18 @@ export default function HomePage() {
               <NikahCountdown />
             </div>
 
-            <div className="olive-intro-note">
+            <div className="olive-intro-note rise-in delay-9">
               <p>
                 Нам будет очень радостно видеть вас рядом в этот особенный день, наполненный молитвой,
                 теплом семьи и красивыми воспоминаниями.
               </p>
             </div>
 
-            <SectionDivider />
+            <div className="rise-in delay-10">
+              <SectionDivider />
+            </div>
 
-            <section className="olive-section">
+            <section className="olive-section rise-in delay-11">
               <SectionKicker icon={HeartHandshake}>Для вас</SectionKicker>
               <h2 className="olive-section-title">Дорогие гости</h2>
               <p className="olive-section-text">
@@ -151,9 +153,11 @@ export default function HomePage() {
               </p>
             </section>
 
-            <SectionDivider />
+            <div className="rise-in delay-12">
+              <SectionDivider />
+            </div>
 
-            <section id="timing" className="olive-section">
+            <section id="timing" className="olive-section rise-in delay-13">
               <SectionKicker icon={Clock3}>Тайминг</SectionKicker>
               <h2 className="olive-section-title">План дня</h2>
               <div className="olive-timeline">
@@ -173,9 +177,11 @@ export default function HomePage() {
               </div>
             </section>
 
-            <SectionDivider />
+            <div className="rise-in delay-14">
+              <SectionDivider />
+            </div>
 
-            <section id="locations" className="olive-section">
+            <section id="locations" className="olive-section rise-in delay-15">
               <SectionKicker icon={MapPin}>Локации</SectionKicker>
               <h2 className="olive-section-title">Где пройдёт наш день</h2>
               <div className="olive-location-list">
@@ -209,9 +215,11 @@ export default function HomePage() {
               </div>
             </section>
 
-            <SectionDivider />
+            <div className="rise-in delay-16">
+              <SectionDivider />
+            </div>
 
-            <section className="olive-section">
+            <section className="olive-section rise-in delay-17">
               <SectionKicker icon={MoonStar}>Дресс-код</SectionKicker>
               <h2 className="olive-section-title">Просим поддержать стиль дня</h2>
               <p className="olive-section-text">
@@ -234,9 +242,11 @@ export default function HomePage() {
               </div>
             </section>
 
-            <SectionDivider />
+            <div className="rise-in delay-18">
+              <SectionDivider />
+            </div>
 
-            <footer className="olive-footer">
+            <footer className="olive-footer rise-in delay-19">
               <SectionKicker icon={Sparkles}>С любовью</SectionKicker>
               <p className="olive-footer-text">
                 Будем ждать вас 05 июня 2026 года и будем счастливы разделить с вами красоту этого дня.
