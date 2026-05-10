@@ -3,6 +3,7 @@ import type { LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 import { ArrowUpRight, Clock3, HeartHandshake, MapPin, MoonStar, Shirt, Sparkles } from 'lucide-react';
 import { NikahCountdown } from '@/components/nikah-countdown';
+import { ScrollReveal } from '@/components/scroll-reveal';
 
 const schedule: Array<{
   time: string;
@@ -140,119 +141,135 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="rise-in delay-10">
+            <ScrollReveal className="scroll-divider-reveal" delay={40}>
               <SectionDivider />
-            </div>
+            </ScrollReveal>
 
-            <section className="olive-section rise-in delay-11">
-              <SectionKicker icon={HeartHandshake}>Для вас</SectionKicker>
-              <h2 className="olive-section-title">Дорогие гости</h2>
-              <p className="olive-section-text">
-                Спасибо, что разделяете с нами этот важный этап жизни. Очень хотим провести его рядом с
-                близкими людьми, в спокойной, тёплой и уважительной атмосфере.
-              </p>
-            </section>
+            <ScrollReveal className="scroll-section-reveal" delay={60}>
+              <section className="olive-section">
+                <SectionKicker icon={HeartHandshake}>Для вас</SectionKicker>
+                <h2 className="olive-section-title">Дорогие гости</h2>
+                <p className="olive-section-text">
+                  Спасибо, что разделяете с нами этот важный этап жизни. Очень хотим провести его рядом с
+                  близкими людьми, в спокойной, тёплой и уважительной атмосфере.
+                </p>
+              </section>
+            </ScrollReveal>
 
-            <div className="rise-in delay-12">
+            <ScrollReveal className="scroll-divider-reveal" delay={40}>
               <SectionDivider />
-            </div>
+            </ScrollReveal>
 
-            <section id="timing" className="olive-section rise-in delay-13">
-              <SectionKicker icon={Clock3}>Тайминг</SectionKicker>
-              <h2 className="olive-section-title">План дня</h2>
-              <div className="olive-timeline">
-                {schedule.map(({ time, title, note, address }) => (
-                  <article key={time} className="olive-timeline-item">
-                    <div className="olive-timeline-rail" aria-hidden="true">
-                      <span className="olive-timeline-dot" />
-                    </div>
-                    <div className="olive-timeline-time">{time}</div>
-                    <div className="olive-timeline-copy">
-                      <h3>{title}</h3>
-                      <p>{note}</p>
-                      <p className="olive-timeline-address">{address}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </section>
+            <ScrollReveal className="scroll-section-reveal" delay={60}>
+              <section id="timing" className="olive-section">
+                <SectionKicker icon={Clock3}>Тайминг</SectionKicker>
+                <h2 className="olive-section-title">План дня</h2>
+                <div className="olive-timeline">
+                  {schedule.map(({ time, title, note, address }, index) => (
+                    <ScrollReveal key={time} className="scroll-item-reveal" delay={index * 90}>
+                      <article className="olive-timeline-item">
+                        <div className="olive-timeline-rail" aria-hidden="true">
+                          <span className="olive-timeline-dot" />
+                        </div>
+                        <div className="olive-timeline-time">{time}</div>
+                        <div className="olive-timeline-copy">
+                          <h3>{title}</h3>
+                          <p>{note}</p>
+                          <p className="olive-timeline-address">{address}</p>
+                        </div>
+                      </article>
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </section>
+            </ScrollReveal>
 
-            <div className="rise-in delay-14">
+            <ScrollReveal className="scroll-divider-reveal" delay={40}>
               <SectionDivider />
-            </div>
+            </ScrollReveal>
 
-            <section id="locations" className="olive-section rise-in delay-15">
-              <SectionKicker icon={MapPin}>Локации</SectionKicker>
-              <h2 className="olive-section-title">Где пройдёт наш день</h2>
-              <div className="olive-location-list">
-                {locations.map(({ title, subtitle, address, href, imageSrc, imageAlt }, index) => (
-                  <article key={title} className="olive-location-item">
-                    <div className="olive-location-head">
-                      <span className="olive-location-number">0{index + 1}</span>
-                      <div>
-                        <p className="olive-location-subtitle">{subtitle}</p>
-                        <h3>{title}</h3>
-                      </div>
-                    </div>
+            <ScrollReveal className="scroll-section-reveal" delay={60}>
+              <section id="locations" className="olive-section">
+                <SectionKicker icon={MapPin}>Локации</SectionKicker>
+                <h2 className="olive-section-title">Где пройдёт наш день</h2>
+                <div className="olive-location-list">
+                  {locations.map(({ title, subtitle, address, href, imageSrc, imageAlt }, index) => (
+                    <ScrollReveal key={title} className="scroll-item-reveal" delay={index * 110}>
+                      <article className="olive-location-item">
+                        <div className="olive-location-head">
+                          <span className="olive-location-number">0{index + 1}</span>
+                          <div>
+                            <p className="olive-location-subtitle">{subtitle}</p>
+                            <h3>{title}</h3>
+                          </div>
+                        </div>
 
-                    <div className="olive-location-photo image-drift">
-                      <Image
-                        src={imageSrc}
-                        alt={imageAlt}
-                        fill
-                        sizes="(max-width: 640px) 100vw, 464px"
-                        className="object-cover"
-                      />
-                    </div>
+                        <div className="olive-location-photo image-drift">
+                          <Image
+                            src={imageSrc}
+                            alt={imageAlt}
+                            fill
+                            sizes="(max-width: 640px) 100vw, 464px"
+                            className="object-cover"
+                          />
+                        </div>
 
-                    <p className="olive-location-address">{address}</p>
-                    <a href={href} target="_blank" rel="noreferrer" className="olive-link">
-                      <span>Открыть маршрут</span>
-                      <ArrowUpRight className="h-4 w-4" />
-                    </a>
-                  </article>
-                ))}
-              </div>
-            </section>
+                        <p className="olive-location-address">{address}</p>
+                        <a href={href} target="_blank" rel="noreferrer" className="olive-link">
+                          <span>Открыть маршрут</span>
+                          <ArrowUpRight className="h-4 w-4" />
+                        </a>
+                      </article>
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </section>
+            </ScrollReveal>
 
-            <div className="rise-in delay-16">
+            <ScrollReveal className="scroll-divider-reveal" delay={40}>
               <SectionDivider />
-            </div>
+            </ScrollReveal>
 
-            <section className="olive-section rise-in delay-17">
-              <SectionKicker icon={MoonStar}>Дресс-код</SectionKicker>
-              <h2 className="olive-section-title">Просим поддержать стиль дня</h2>
-              <p className="olive-section-text">
-                Будем признательны, если вы выберете спокойные природные оттенки и закрытые силуэты,
-                уместные для мечети и семейного праздника.
-              </p>
+            <ScrollReveal className="scroll-section-reveal" delay={60}>
+              <section className="olive-section">
+                <SectionKicker icon={MoonStar}>Дресс-код</SectionKicker>
+                <h2 className="olive-section-title">Просим поддержать стиль дня</h2>
+                <p className="olive-section-text">
+                  Будем признательны, если вы выберете спокойные природные оттенки и закрытые силуэты,
+                  уместные для мечети и семейного праздника.
+                </p>
 
-              <div className="olive-dress-list">
-                {dressCodeItems.map(({ title, text, icon: Icon }) => (
-                  <article key={title} className="olive-dress-item">
-                    <div className="olive-dress-icon">
-                      <Icon className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <h3>{title}</h3>
-                      <p>{text}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </section>
+                <div className="olive-dress-list">
+                  {dressCodeItems.map(({ title, text, icon: Icon }, index) => (
+                    <ScrollReveal key={title} className="scroll-item-reveal" delay={index * 100}>
+                      <article className="olive-dress-item">
+                        <div className="olive-dress-icon">
+                          <Icon className="h-4 w-4" />
+                        </div>
+                        <div>
+                          <h3>{title}</h3>
+                          <p>{text}</p>
+                        </div>
+                      </article>
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </section>
+            </ScrollReveal>
 
-            <div className="rise-in delay-18">
+            <ScrollReveal className="scroll-divider-reveal" delay={40}>
               <SectionDivider />
-            </div>
+            </ScrollReveal>
 
-            <footer className="olive-footer rise-in delay-19">
-              <SectionKicker icon={Sparkles}>С любовью</SectionKicker>
-              <p className="olive-footer-text">
-                Будем ждать вас 05 июня 2026 года и будем счастливы разделить с вами красоту этого дня.
-              </p>
-              <p className="olive-footer-sign">Ильнур и Камилла</p>
-            </footer>
+            <ScrollReveal className="scroll-section-reveal" delay={80}>
+              <footer className="olive-footer">
+                <SectionKicker icon={Sparkles}>С любовью</SectionKicker>
+                <p className="olive-footer-text">
+                  Будем ждать вас 05 июня 2026 года и будем счастливы разделить с вами красоту этого дня.
+                </p>
+                <p className="olive-footer-sign">Ильнур и Камилла</p>
+              </footer>
+            </ScrollReveal>
           </div>
         </section>
       </div>
