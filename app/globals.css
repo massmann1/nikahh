@@ -539,13 +539,13 @@ select {
   margin-top: 1.45rem;
 }
 
+.olive-location-list > .scroll-item-reveal + .scroll-item-reveal {
+  margin-top: 1.45rem;
+}
+
 .olive-location-item {
   padding-bottom: 1.5rem;
   border-bottom: 1px solid rgb(160 154 137 / 0.18);
-}
-
-.olive-location-item + .olive-location-item {
-  margin-top: 1.45rem;
 }
 
 .olive-location-item:last-child {
@@ -557,7 +557,13 @@ select {
   display: grid;
   grid-template-columns: 2.3rem 1fr;
   gap: 0.8rem;
-  align-items: end;
+  align-items: start;
+}
+
+.olive-location-head-copy {
+  display: grid;
+  gap: 0.22rem;
+  min-width: 0;
 }
 
 .olive-location-number {
@@ -566,6 +572,7 @@ select {
   justify-content: center;
   width: 2.3rem;
   height: 2.3rem;
+  margin-top: 0.1rem;
   border-radius: 999px;
   border: 1px solid rgb(110 118 90 / 0.18);
   color: #7c8566;
@@ -578,6 +585,10 @@ select {
 .olive-location-subtitle {
   margin: 0;
   color: #8a7a63;
+}
+
+.olive-location-head h3 {
+  text-wrap: balance;
 }
 
 .olive-location-photo {

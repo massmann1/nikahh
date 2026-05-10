@@ -198,7 +198,7 @@ export default function HomePage() {
                       <article className="olive-location-item">
                         <div className="olive-location-head">
                           <span className="olive-location-number">0{index + 1}</span>
-                          <div>
+                          <div className="olive-location-head-copy">
                             <p className="olive-location-subtitle">{subtitle}</p>
                             <h3>{title}</h3>
                           </div>
